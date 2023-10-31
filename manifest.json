@@ -16,9 +16,16 @@
                 "*://fandom.com/",
                 "*://www.fandom.com/"
             ],
-            "js": ["scripts/content.js"],
+            "js": ["scripts/defandomizer.js"],
             "run_at": "document_end",
             "world": "ISOLATED"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [ "data/sites.json" ],
+            "matches": ["<all_urls>"],
+            "extension_ids": []
         }
     ]
 }

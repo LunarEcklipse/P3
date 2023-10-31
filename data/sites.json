@@ -1,3 +1,10 @@
-{
-    
-}
+[
+    {
+        "fwiki": "minecraft",
+        "alt": "https://minecraft.wiki/"
+    },
+    {
+        "fwiki": "seaofthieves",
+        "alt": "https://seaofthieves.wiki.gg/"
+    }
+]
