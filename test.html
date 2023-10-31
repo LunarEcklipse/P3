@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Home</title>
+    </head>
+    <body>
+        <p>aaaa</p>
+    </body>
+    <script>
+        function check_if_url_is_fandom_wiki(url) // Returns true if the URL is a fandom wiki, else false
+        {
+            const re_patterns = [new RegExp("https?:\/\/([a-zA-Z0-9]+).fandom.com\/.*"), new RegExp("https?:\/\/www.([a-zA-Z0-9]+).fandom.com\/.*"), ];
+            for (let i = 0; i < re_patterns.length; i++)
+            {
+                if (re_patterns[i].test(url))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function capture_fandom_wiki_from_url(url)
+        {
+            // PATTERN: HTTP(S)://{WIKI_TITLE_HERE}.fandom.com/{WHATEVER}
+            // PATTERN: HTTP(S)://www.{WIKI_TITLE_HERE}.fandom.com/{WHATEVER}
+            const match_patterns = [new RegExp("https?:\/\/([a-zA-Z0-9]+).fandom.com\/.*"), new RegExp("https?:\/\/www.([a-zA-Z0-9]+).fandom.com\/.*"), ];
+            if (check_if_url_is_fandom_wiki(url))
+            {
+                for (let i = 0; i < match_patterns.length; i++)
+                {
+                    let match = match_patterns[i].exec(url);
+                    if (match)
+                    {
+                        return match[1];
+                    }
+                }
+            }
+            return null;
+        }
+
+        console.log(capture_fandom_wiki_from_url("https://minecraft.fandom.com/wiki/aghuoagahotghat?v=1"));
+    </script>
+</html>

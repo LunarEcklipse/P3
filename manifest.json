@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Defandomizer",
+    "version": "1.0.0",
+
+    "description": "An extension that really, really hates Fandom wikis.",
+
+    "author": "kaden.duncanmatis@uleth.ca",
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.fandom.com/*",
+                "*://fandom.com/*",
+                "*://www.fandom.com/*",
+                "*://*.fandom.com/",
+                "*://fandom.com/",
+                "*://www.fandom.com/"
+            ],
+            "js": ["scripts/content.js"],
+            "run_at": "document_end",
+            "world": "ISOLATED"
+        }
+    ]
+}
