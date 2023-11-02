@@ -1,5 +1,17 @@
 [
     {
+        "fwiki": "20xx",
+        "alt": "https://20xx.wiki.gg/"
+    },
+    {
+        "fwiki": "acecombat",
+        "alt": "https://acecombat.wiki.gg/"
+    },
+    {
+        "fwiki": "animalcrossingpocketcamp",
+        "alt": "https://animalcrossingpocketcamp.wiki.gg/"
+    },
+    {
         "fwiki": "ark",
         "alt": "https://ark.wiki.gg/"
     },
@@ -190,5 +202,37 @@
     {
         "fwiki": "zelda",
         "alt": "https://zeldawiki.wiki/"
+    },
+    {
+        "fwiki": "townshiptale",
+        "alt": "https://townshiptale.wiki.gg/"
+    },
+    {
+        "fwiki": "aether",
+        "alt": "https://aether.wiki.gg/"
+    },
+    {
+        "fwiki": "ars-nouveau",
+        "alt": "https://www.arsnouveau.wiki/"
+    },
+    {
+        "fwiki": "againstallodds",
+        "alt": "https://againstallodds.wiki.gg/"
+    },
+    {
+        "fwiki": "airbornekingdom",
+        "alt": "https://airebornekingdom.wiki.gg/"
+    },
+    {
+        "fwiki": "airportceo",
+        "alt": "https://airportceo.wiki.gg/"
+    },
+    {
+        "fwiki": "albionworld",
+        "alt": "https://albion.wiki.gg/"
+    },
+    {
+        "fwiki": "astrea-sso",
+        "alt": "https://astrea.wiki.gg/"
     }
 ]

@@ -1,4 +1,53 @@
-class Logger
+
+class DefandomizerSettings // Handles user settings
+{
+    static load_user_settings()
+    {
+
+    }   
+    
+    static save_user_settings()
+    {
+
+    }
+
+    constructor(display_type, auto_redirect, page_whitelist)
+    {
+        if (display_type === undefined || display_type === null)
+        {
+            display_type = "fullpage";
+        }
+        else if (display_type !== "fullpage" && display_type !== "popup" && display_type !== "none")
+        {
+            Logger.warn(`Invalid display type ${display_type}. Defaulting to fullpage.`);
+            display_type = "fullpage";
+        }
+        else
+        {
+            this.display_type = display_type;
+        }
+        if (typeof(auto_redirect) !== "boolean")
+        {
+            Logger.warn(`Invalid auto_redirect type (Was "${typeof(auto_redirect)}", must be "boolean"). Defaulting to false.`);
+            this.auto_redirect = false;
+        }
+        else
+        {
+            this.auto_redirect = auto_redirect;
+        }
+        if (typeof(page_whitelist) !== "array")
+        {
+            Logger.warn(`Invalid page_whitelist type (Was "${typeof(page_whitelist)}", must be "array"). Defaulting to empty array.`);
+            this.page_whitelist = [];
+        }
+        else
+        {
+            this.page_whitelist = page_whitelist;
+        }
+    }
+}
+
+class Logger // Simple logging class to make it easier to identify logs made by this extension. Just appends "Defandomizer | " to the beginning of the message.
 {
     static log(message)
     {
@@ -73,11 +122,16 @@ var site_redirects = null;
 var page_html = "";
 var page_head = "";
 var page_body = "";
+var new_page_head = "";
+var new_page_body = "";
+var accept_page_changes = true;
+var page_observer = undefined;
 
 class PageReplacer
 {
     static replace_page(alternate_url)
     {
+        page_observer = new MutationObserver(PageReplacer.reset_page_on_change);
         page_html = document.documentElement.innerHTML;
         page_head = document.head.innerHTML;
         page_body = document.body.innerHTML;
@@ -121,12 +175,19 @@ class PageReplacer
         if (alternate_url)
         {
             let new_p4 = document.createElement("p");
-            new_p4.innerText = "Fortunately, this wiki's community has already moved elsewhere. You can find it at: ";
-            let new_a = document.createElement("a");
-            new_a.href = alternate_url;
-            new_a.innerText = alternate_url + ".";
-            new_p4.appendChild(new_a);
+            new_p4.innerText = "Fortunately, this wiki's community has already moved elsewhere.";
+            let new_btn = document.createElement("button");
+            new_btn.id = "defandomizer_continue_to_new_wiki_btn";
+            new_btn.innerText = "Continue to the New Wiki";
+            new_btn.addEventListener("click", function() {
+                accept_page_changes = true;
+                page_observer.disconnect();
+                document.head.innerHTML = page_head;
+                document.body.innerHTML = page_body;
+                window.location.href = alternate_url;
+            });
             document.body.appendChild(new_p4);
+            document.body.appendChild(new_btn);
         }
         else
         {
@@ -136,10 +197,39 @@ class PageReplacer
         }
         let return_button = document.createElement("button");
         return_button.innerText = "Continue to Fandom Anyways";
-        return_button.onclick = function() {
-            document.documentElement.innerHTML = page_html;
-        };
+        return_button.id = "defandomizer_return_to_fandom_btn";
+        return_button.addEventListener("click", function() {
+            accept_page_changes = true;
+            page_observer.disconnect();
+            document.head.innerHTML = page_head;
+            document.body.innerHTML = page_body;
+        });
+        console.dir(return_button);
         document.body.appendChild(return_button);
+        new_page_head = document.head.innerHTML;
+        new_page_body = document.body.innerHTML;
+        
+        console.log("Button no click?");
+        accept_page_changes = false;
+
+        /*(async function() {
+            Logger.log("Activating observer.");
+            page_observer.observe(document.documentElement, {childList: true, subtree: true});
+        })();   */
+    }
+    
+    static reset_page_on_change(event) // Called when the page is changed and 
+    {
+        (async function() {
+            if (!accept_page_changes)
+        {
+            Logger.log("Page change by site rejected.");
+            page_observer.disconnect(); // This prevents the extension from literally crashing the page hopefully
+            document.head.innerHTML = new_page_head;
+            document.body.innerHTML = new_page_body;
+            page_observer.observe(document.documentElement, {childList: true, subtree: true});
+        }
+        })();
     }
 }
 
@@ -151,6 +241,9 @@ async function load_site_data()
 }
 
 Logger.log("Fandomizer is now running.");
+window.addEventListener("error", (event) => {
+    console.log(event.source);
+});
 (async function() {
     site_redirects = await load_site_data();
     Logger.log("Loaded site data.");
@@ -170,8 +263,3 @@ Logger.log("Fandomizer is now running.");
         PageReplacer.replace_page(alternate_url);
     }
 })();
-
- // We store the page body here for later use.
-
-
-//SiteChecker.search_data_for_existing_redirect(location.href);
