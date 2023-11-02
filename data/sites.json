@@ -234,5 +234,61 @@
     {
         "fwiki": "astrea-sso",
         "alt": "https://astrea.wiki.gg/"
+    },
+    {
+        "fwiki": "bomb-rush-cyberfunk",
+        "alt": "https://bombrushcyberfunk.wiki.gg/"
+    },
+    {
+        "fwiki": "cherry-forest",
+        "alt": "https://cherryforest.wiki.gg/"
+    },
+    {
+        "fwiki": "pizzatower",
+        "alt": "https://pizzatower.miraheze.org/"
+    },
+    {
+        "fwiki": "coromon",
+        "alt": "https://coromon.wiki.gg/"
+    },
+    {
+        "fwiki": "cosmoteer",
+        "alt": "https://cosmoteer.wiki.gg/"
+    },
+    {
+        "fwiki": "pokemon",
+        "alt": "https://bulbapedia.bulbagarden.net/"
+    },
+    {
+        "fwiki": "elderscrolls",
+        "alt": "https://uesp.net/"
+    },
+    {
+        "fwiki": "dreamworks-school-of-dragons",
+        "alt": "https://schoolofdragons.wiki.gg/"
+    },
+    {
+        "fwiki": "equestria-at-war",
+        "alt": "https://equestriaatwar.wiki.gg/"
+    },
+    {
+        "fwiki": "ethyrial-echoes-of-yore",
+        "alt": "https://ethyrial.wiki.gg/"
+    },
+    {
+        "fwiki": "everdreamvalley",
+        "alt": "https://everdreamvalley.wiki.gg/"
+    },
+    {
+        "fwiki": "fantasy-life",
+        "alt": "https://fantasylife.wiki.gg/"
+    },
+    {
+        "fwiki": "fallout",
+        "alt": "https://fallout.wiki/"
+    },
+    {
+        "fwiki": "mario",
+        "alt": "https://www.mariowiki.com/"
     }
 ]
