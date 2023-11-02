@@ -6,6 +6,11 @@
     "description": "An extension that really, really hates Fandom wikis.",
 
     "author": "kaden.duncanmatis@uleth.ca",
+    "icons": { 
+        "16": "img/defandomizer_16.png",
+        "48": "img/defandomizer_48.png",
+        "128": "img/defandomizer_128.png"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -17,15 +22,18 @@
                 "*://www.fandom.com/"
             ],
             "js": ["scripts/defandomizer.js"],
-            "run_at": "document_end",
+            "run_at": "document_idle",
             "world": "ISOLATED"
         }
     ],
     "web_accessible_resources": [
         {
-            "resources": [ "data/sites.json" ],
+            "resources": [ "data/sites.json", "css/defandomizer_style.css", "img/defandomizer_16.png", "img/defandomizer_256.png"],
             "matches": ["<all_urls>"],
             "extension_ids": []
         }
+    ],
+    "permissions": [
+        "storage"
     ]
 }

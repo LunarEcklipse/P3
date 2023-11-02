@@ -71,23 +71,41 @@ class SiteChecker
 
 var site_redirects = null;
 var page_html = "";
+var page_head = "";
+var page_body = "";
 
 class PageReplacer
 {
     static replace_page(alternate_url)
     {
-        let page_html = document.documentElement.innerHTML;
-        document.documentElement.innerHTML = "";
-        let new_head = document.createElement("head");
-        {
-            let new_title = document.createElement("title");
-            {
-                new_title.innerText = "Defandomizer has Interrupted this Page.";
-            }
-            new_head.appendChild(new_title);
-        }
-        document.documentElement.appendChild(new_head);
-        let new_body = document.createElement("body");
+        page_html = document.documentElement.innerHTML;
+        page_head = document.head.innerHTML;
+        page_body = document.body.innerHTML;
+        document.head.innerHTML = "";
+        document.body.innerHTML = "";
+        let new_title = document.createElement("title");
+        new_title.innerText = "Defandomizer has Interrupted this Page.";
+        document.head.appendChild(new_title);
+        let new_meta = document.createElement("meta");
+        new_meta.name = "viewport";
+        new_meta.content = "width=device-width, initial-scale=1.0";
+        document.head.appendChild(new_meta);
+        let new_favicon = document.createElement("link");
+        new_favicon.rel = "icon";
+        new_favicon.href = chrome.runtime.getURL("img/defandomizer_16.png");
+        document.head.appendChild(new_favicon);
+        let new_charset = document.createElement("meta");
+        new_charset.charset = "utf-8";
+        document.head.appendChild(new_charset);
+        let new_stylesheet = document.createElement("link");
+        new_stylesheet.rel = "stylesheet";
+        new_stylesheet.type = "text/css";
+        new_stylesheet.href = chrome.runtime.getURL("css/defandomizer_style.css");
+        document.head.appendChild(new_stylesheet);
+        // Add padding to body
+        let new_img = document.createElement("img");
+        new_img.src = chrome.runtime.getURL("img/defandomizer_256.png");
+        document.body.appendChild(new_img);
         let new_header = document.createElement("h1");
         new_header.innerText = "Defandomizer has Interrupted this Page.";
         let new_p1 = document.createElement("p");
@@ -96,11 +114,10 @@ class PageReplacer
         new_p2.innerText = "If you don't know already, Fandom is a company that hosts various pop culture wikis, but puts profit over people.";
         let new_p3 = document.createElement("p");
         new_p3.innerText = "The company routinely buys out other, independent platforms, and then forces changes on their sites that degrade the reader experience and take away the control of the editors. Essentially, their entire business model is based on monetizing things people make for free. Wiki editors are not compensated in any way, shape, or form.";
-        document.documentElement.appendChild(new_body);
-        new_body.appendChild(new_header);
-        new_body.appendChild(new_p1);
-        new_body.appendChild(new_p2);
-        new_body.appendChild(new_p3);
+        document.body.appendChild(new_header);
+        document.body.appendChild(new_p1);
+        document.body.appendChild(new_p2);
+        document.body.appendChild(new_p3);
         if (alternate_url)
         {
             let new_p4 = document.createElement("p");
@@ -109,20 +126,20 @@ class PageReplacer
             new_a.href = alternate_url;
             new_a.innerText = alternate_url + ".";
             new_p4.appendChild(new_a);
-            new_body.appendChild(new_p4);
+            document.body.appendChild(new_p4);
         }
         else
         {
             let new_p4 = document.createElement("p");
             new_p4.innerText = "Please consider searching for alternative communities for this wiki. You can find them on communities such as wiki.gg.";
-            new_body.appendChild(new_p4);
+            document.body.appendChild(new_p4);
         }
         let return_button = document.createElement("button");
         return_button.innerText = "Continue to Fandom Anyways";
         return_button.onclick = function() {
             document.documentElement.innerHTML = page_html;
         };
-        new_body.appendChild(return_button);
+        document.body.appendChild(return_button);
     }
 }
 

@@ -1,10 +1,194 @@
 [
     {
+        "fwiki": "ark",
+        "alt": "https://ark.wiki.gg/"
+    },
+    {
+        "fwiki": "astroneer",
+        "alt": "https://astroneer.wiki.gg/"
+    },
+    {
+        "fwiki": "arknights",
+        "alt": "https://arknights.wiki.gg/"
+    },
+    {
+        "fwiki": "deeprockgalactic",
+        "alt": "https://deeprockgalactic.wiki.gg/"
+    },
+    {
+        "fwiki": "crusaderkings",
+        "alt": "https://ck3.paradoxwikis.com/"
+    },
+    {
+        "fwiki": "deadcells",
+        "alt": "https://deadcells.wiki.gg/"
+    },
+    {
+        "fwiki": "against-the-storm",
+        "alt": "https://hoodedhorse.com/wiki/Against_the_Storm"
+    },
+    {
+        "fwiki": "backpack-hero",
+        "alt": "https://backpackhero.wiki.gg/"
+    },
+    {
+        "fwiki": "calamitymod",
+        "alt": "https://calamitymod.wiki.gg/"
+    },
+    {
+        "fwiki": "carrion",
+        "alt": "https://carrion.wiki.gg/"
+    },
+    {
+        "fwiki": "changed",
+        "alt": "https://changed.wiki.gg/"
+    },
+    {
+        "fwiki": "chivalry",
+        "alt": "https://chivalry.wiki.gg/"
+    },
+    {
+        "fwiki": "cuphead",
+        "alt": "https://cuphead.wiki.gg/"
+    },
+    {
+        "wiki": "darkestdungeon",
+        "alt": "https://darkestdungeon.wiki.gg/"
+    },
+    {
+        "fwiki": "deceive-inc",
+        "alt": "https://wiki.deceiveinc.com/"
+    },
+    {
+        "fwiki": "dontstarve",
+        "alt": "https://dontstarve.wiki.gg/"
+    },
+    {
+        "fwiki": "dyinglight",
+        "alt": "https://dyinglight.wiki.gg/"
+    },
+    {
+        "fwiki": "dungeon-of-the-endless",
+        "alt": "https://endlessdungeon.wiki.gg/"
+    },
+    {
+        "fwiki": "farmingsimulator",
+        "alt": "https://farmingsimulator.wiki.gg/"
+    },
+    {
+        "fwiki": "fearandhunger",
+        "alt": "https://fearandhunger.wiki.gg/"
+    },
+    {
+        "fwiki": "foxhole",
+        "alt": "https://foxhole.wiki.gg/"
+    },
+    {
+        "fwiki": "fridaynightfunkin",
+        "alt": "https://fridaynightfunkin.wiki.gg/"
+    },
+    {
+        "fwiki": "hearthstone",
+        "alt": "https://hearthstone.wiki.gg/"
+    },
+    {
+        "fwiki": "heartsofiron",
+        "alt": "https://hoi4.paradoxwikis.com/"
+    },
+    {
+        "fwiki": "hello-neighbor",
+        "alt": "https://helloneighbor.wiki.gg/"
+    },
+    {
         "fwiki": "minecraft",
         "alt": "https://minecraft.wiki/"
     },
     {
+        "fwiki": "noita",
+        "alt": "https://noita.wiki.gg/"
+    },
+    {
+        "fwiki": "pathologic",
+        "alt": "https://pathologic.wiki.gg/"
+    },
+    {
+        "fwiki": "pubg",
+        "alt": "https://pubg.wiki.gg/"
+    },
+    {
+        "fwiki": "projectwingman",
+        "alt": "https://projectwingman.wiki.gg/"
+    },
+    {
+        "fwiki": "projectzomboid",
+        "alt": "https://pzwiki.net/"
+    },
+    {
+        "fwiki": "rain-world-game",
+        "alt": "https://rainworld.miraheze.org"
+    },
+    {
+        "fwiki": "rimworld",
+        "alt": "https://rimworldwiki.com/"
+    },
+    {
+        "fwiki": "runescape",
+        "alt": "https://runescape.wiki/"
+    },
+    {
+        "fwiki": "satisfactory",
+        "alt": "https://satisfactory.wiki.gg/"
+    },
+    {
         "fwiki": "seaofthieves",
         "alt": "https://seaofthieves.wiki.gg/"
+    },
+    {
+        "fwiki": "sonsoftheforest",
+        "alt": "https://sonsoftheforest.wiki.gg/"
+    },
+    {
+        "fwiki": "stardewvalley",
+        "alt": "https://stardewvalleywiki.com/"
+    },
+    {
+        "fwiki": "steamworld",
+        "alt": "https://steamworld.wiki.gg/"
+    },
+    {
+        "fwiki": "stellaris",
+        "alt": "https://stellaris.paradoxwikis.com/"
+    },
+    {
+        "fwiki": "temtem",
+        "alt": "https://temtem.wiki.gg/"
+    },
+    {
+        "fwiki": "terraria",
+        "alt": "https://terraria.wiki.gg/"
+    },
+    {
+        "fwiki": "timberborn",
+        "alt": "https://timberborn.wiki.gg/"
+    },
+    {
+        "fwiki": "truck-simulator",
+        "alt": "https://trucksimulator.wiki.gg/"
+    },
+    {
+        "fwiki": "undermine",
+        "alt": "https://undermine.wiki.gg/"
+    },
+    {
+        "fwiki": "wowpedia",
+        "alt": "https://warcraft.wiki.gg/"
+    },
+    {
+        "fwiki": "yugioh",
+        "alt": "https://yugipedia.com"
+    },
+    {
+        "fwiki": "zelda",
+        "alt": "https://zeldawiki.wiki/"
     }
 ]
