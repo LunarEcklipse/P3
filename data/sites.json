@@ -290,5 +290,33 @@
     {
         "fwiki": "mario",
         "alt": "https://www.mariowiki.com/"
+    },
+    {
+        "fwiki": "fategrandorder",
+        "alt": "https://grandorder.wiki/"
+    },
+    {
+        "fwiki": "letitdie",
+        "alt": "https://letitdie.wiki.gg/"
+    },
+    {
+        "fwiki": "survivingmars",
+        "alt": "https://survivingmars.paradoxwikis.com/"
+    },
+    {
+        "fwiki": "survivingtheaftermath",
+        "alt": "https://sta.paradoxwikis.com/"
+    },
+    {
+        "fwiki": "battlebit",
+        "alt": "https://battlebit.wiki.gg/"
+    },
+    {
+        "fwiki": "frackinuniverse",
+        "alt": "https://frackinuniverse.wiki.gg/"
+    },
+    {
+        "fwiki": "factorio",
+        "alt": "https://wiki.factorio.com/"
     }
 ]
