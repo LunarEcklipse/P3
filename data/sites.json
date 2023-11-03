@@ -322,5 +322,17 @@
     {
         "fwiki": "hollowknight",
         "alt": "https://hollowknight.wiki/"
+    },
+    {
+        "fwiki": "monumentammo",
+        "alt": "https://monumenta.wiki.gg/"
+    },
+    {
+        "fwiki": "planetaryannihilation",
+        "alt": "https://planetaryannihilation.wiki.gg/"
+    },
+    {
+        "fwiki": "ratatan",
+        "alt": "https://ratatan.wiki.gg/"
     }
 ]
