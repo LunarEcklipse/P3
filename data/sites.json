@@ -318,5 +318,9 @@
     {
         "fwiki": "factorio",
         "alt": "https://wiki.factorio.com/"
+    },
+    {
+        "fwiki": "hollowknight",
+        "alt": "https://hollowknight.wiki/"
     }
 ]

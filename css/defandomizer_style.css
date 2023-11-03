@@ -33,6 +33,11 @@ p
     font-family: 'Rokkitt', serif;
 }
 
+iframe
+{
+    margin:auto;
+}
+
 button
 {
     margin:auto;
@@ -42,5 +47,4 @@ button
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     padding: 0.5em;
-
 }

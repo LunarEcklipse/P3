@@ -1,14 +1,21 @@
-
 class DefandomizerSettings // Handles user settings
 {
     static load_user_settings()
     {
-
-    }   
-    
-    static save_user_settings()
-    {
-
+        let display_type, auto_redirect, page_whitelist;
+        chrome.storage.sync.get(
+            {
+                display_type: 'fullpage',
+                auto_redirect: false,
+                page_whitelist: []
+            },
+            (items) => {
+                display_type = items.display_type;
+                auto_redirect = items.auto_redirect;
+                page_whitelist = items.page_whitelist;
+            }
+        );
+        return new DefandomizerSettings(display_type, auto_redirect, page_whitelist);
     }
 
     constructor(display_type, auto_redirect, page_whitelist)
@@ -45,7 +52,28 @@ class DefandomizerSettings // Handles user settings
             this.page_whitelist = page_whitelist;
         }
     }
+
+    save_user_settings()
+    {
+        chrome.storage.sync.set(
+            {
+                display_type: this.display_type,
+                auto_redirect: this.auto_redirect,
+                page_whitelist: this.page_whitelist
+            },
+            () => {
+                Logger.log("Settings updated!");
+            }
+        );
+    }
+
+    add_page_to_whitelist(page)
+    {
+        this.page_whitelist.push(page.trim());
+        this.save_user_settings();
+    }
 }
+
 
 class Logger // Simple logging class to make it easier to identify logs made by this extension. Just appends "Defandomizer | " to the beginning of the message.
 {
@@ -99,6 +127,18 @@ class SiteChecker
         return null;
     }
 
+    static check_if_page_is_on_whitelist(page_url, whitelist)
+    {
+        for (let i = 0; i < whitelist.length; i++)
+        {
+            if (page_url.includes(whitelist[i]))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     static search_data_for_existing_redirect(page_url) // Takes a URL, determines what wiki it is, and then checks if it exists in the data file
     {
         let wiki = SiteChecker.capture_fandom_wiki_from_url(page_url);
@@ -118,6 +158,7 @@ class SiteChecker
     }
 }
 
+var user_settings = DefandomizerSettings.load_user_settings();
 var site_redirects = null;
 var page_html = "";
 var page_head = "";
@@ -168,10 +209,14 @@ class PageReplacer
         new_p2.innerText = "If you don't know already, Fandom is a company that hosts various pop culture wikis, but puts profit over people.";
         let new_p3 = document.createElement("p");
         new_p3.innerText = "The company routinely buys out other, independent platforms, and then forces changes on their sites that degrade the reader experience and take away the control of the editors. Essentially, their entire business model is based on monetizing things people make for free. Wiki editors are not compensated in any way, shape, or form.";
+        let new_p4 = document.createElement("p");
+        new_p4.innerText = "Want to learn more? Watch this excellent video by the Youtube channel mossbag.";
         document.body.appendChild(new_header);
         document.body.appendChild(new_p1);
         document.body.appendChild(new_p2);
         document.body.appendChild(new_p3);
+        document.body.appendChild(new_p4);
+        document.body.innerHTML += `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/qcfuA_UAz3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
         if (alternate_url)
         {
             let new_p4 = document.createElement("p");
@@ -233,6 +278,14 @@ class PageReplacer
     }
 }
 
+class PopupConstructor
+{
+    static create_popup()
+    {
+
+    }
+}
+
 async function load_site_data()
 {
     let response = await fetch(chrome.runtime.getURL("data/sites.json"));
@@ -251,15 +304,54 @@ window.addEventListener("error", (event) => {
     Logger.log("Loaded page body.");
 
     let alternate_url = null;
-
     if (SiteChecker.check_if_url_is_fandom_wiki(location.href)) // Get an alternate URL if one exists in the data.
     {
-        alternate_url = SiteChecker.search_data_for_existing_redirect(location.href);
-        if (alternate_url)
+        switch(user_settings.display_type)
         {
-            Logger.log("Found alternate URL: " + alternate_url);
+            case "fullpage":
+                if (SiteChecker.check_if_page_is_on_whitelist(capture_fandom_wiki_from_url(location.href), user_settings.page_whitelist))
+                {
+                    Logger.log("Page is on whitelist. Skipping.");
+                }
+                else
+                {
+                    alternate_url = SiteChecker.search_data_for_existing_redirect(location.href);
+                    if (alternate_url)
+                    {
+                        Logger.log("Found alternate URL: " + alternate_url);
+                        if (user_settings.auto_redirect)
+                        {
+                            Logger.log("Redirecting user to replacement URL...");
+                            window.location.href = alternate_url;
+                            break;
+                        }
+                    }
+                    page_html = document.documentElement.innerHTML;
+                    PageReplacer.replace_page(alternate_url);
+                }
+                break;
+            case "popup":
+                break;
+            case "none":
+                Logger.log("Display type is set to none. Skipping.");
+                break;
+            default:
+                Logger.warn("Invalid display type. Defaulting to fullpage.");
+                if (SiteChecker.check_if_page_is_on_whitelist(capture_fandom_wiki_from_url(location.href), user_settings.page_whitelist))
+                {
+                    Logger.log("Page is on whitelist. Skipping.");
+                }
+                else
+                {
+                    alternate_url = SiteChecker.search_data_for_existing_redirect(location.href);
+                    if (alternate_url)
+                    {
+                        Logger.log("Found alternate URL: " + alternate_url);
+                    }
+                    page_html = document.documentElement.innerHTML;
+                    PageReplacer.replace_page(alternate_url);
+                }
+                break;
         }
-        page_html = document.documentElement.innerHTML;
-        PageReplacer.replace_page(alternate_url);
     }
 })();

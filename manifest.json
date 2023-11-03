@@ -34,6 +34,9 @@
         }
     ],
     "permissions": [
+        "activeTab",
+        "scripting",
         "storage"
-    ]
+    ],
+    "options_page": "options.html"
 }
