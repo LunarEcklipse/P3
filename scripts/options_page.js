@@ -37,7 +37,14 @@ const restoreOptions = () => {
         (items) => {
             document.getElementById('display_type').value = items.display_type;
             document.getElementById('auto_redirect').checked = items.auto_redirect;
-            document.getElementById('page_whitelist').value = items.page_whitelist.join(', ');
+            if (document.getElementById('page_whitelist').value === null)
+            {
+                document.getElementById('page_whitelist').value = '';
+            }
+            else
+            {
+                document.getElementById('page_whitelist').value = items.page_whitelist.join(', ');
+            }
         }
     );
 };

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Defandomizer - Options</title>
-        <link rel="stylesheet" href="styles/options_page.css">
+        <link rel="stylesheet" href="css/defandomizer_options.css">
         <meta viewport="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
     </head>
@@ -10,18 +10,20 @@
         <h1>Defandomizer Options</h1>
         <select id="display_type">
             <option value="fullpage">Full Page</option>
-            <option value="popup">Popup</option>
             <option value="none">None</option>
         </select>
         <br />
         <label>
-            <input type="checkbox" id="auto_redirect">
             Auto-redirect
+            <input type="checkbox" id="auto_redirect">
+            
         </label>
         <br />
         <label>
-            <textarea id="pagewhitelist" rows="4" cols="50"></textarea>
             Page Whitelist
+            <br />
+            <textarea id="page_whitelist" rows="4" cols="50"></textarea>
+            
         </label>
         <br />
         <div id="status"></div>
